@@ -1,8 +1,8 @@
-// получаем элементы
+
 import { getData } from './getData.js'
 import generateSubCatalog from './generateSubCatalog.js';
 export const catalog = () => {
-
+   // получаем элементы c DOM
    const updateSubCatalog = generateSubCatalog();
 
    const btnBurger = document.querySelector('.btn-burger');
@@ -17,19 +17,19 @@ export const catalog = () => {
    overlay.classList.add('overlay');
    document.body.insertAdjacentElement('beforebegin', overlay);
 
-   // function
-   const openMenu = () => {
+   // функции
+   const openMenu = () => {    // функция открытия меню
       catalog.classList.add('open');
       overlay.classList.add('active');
    };
 
-   const closeMenu = () => {
-      closeSubMenu();
+   const closeMenu = () => { // функция закрытия меню
+      closeSubMenu(); 
       catalog.classList.remove('open');
       overlay.classList.remove('active');      
    };
 
-   const openSubMenu = event => {
+   const openSubMenu = event => { 
       event.preventDefault(); 
       const target = event.target;  
       const itemList = target.closest('.catalog-list__item');
@@ -42,10 +42,10 @@ export const catalog = () => {
       }
    };
 
-   const closeSubMenu = () => {
+   const closeSubMenu = () => { // функция закрытия под меню
       subCatalog.classList.remove('subopen');
    }
-
+   // вызовы функций
    btnBurger.addEventListener('click', openMenu);
    btnClose.addEventListener('click', closeMenu);
    overlay.addEventListener('click', closeMenu);

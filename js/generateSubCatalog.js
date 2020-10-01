@@ -1,6 +1,6 @@
 
 
-
+// генерация под каталога
 const generateSubCatalog = () => {
 
    const subCatalog = document.createElement('div');
@@ -9,7 +9,7 @@ const generateSubCatalog = () => {
    const updateHTML = (header, list) => {
       subCatalog.textContent = '';
       let listHTML ='';
-
+      // перебор полученных данных с созданием пунктов каталога
       list.forEach(item => {
          listHTML += `
          <li class="subcatalog-list__item"><a href="goods.html?subcat=${item}">${item}</a></li>

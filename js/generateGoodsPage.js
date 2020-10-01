@@ -1,7 +1,7 @@
 import { getData } from './getData.js';
 
 const wishList = [];
-
+// генарация страниц
 const generateGoodsPage = () => {
 
    const mainHeader = document.querySelector('.main-header');
@@ -9,9 +9,10 @@ const generateGoodsPage = () => {
 
    const generateCards = (data) => {
       goodsList.textContent = ''; 
-      if ((typeof data) == 'string') {
+      // проверка тип полученных данных 
+      if ((typeof data) == 'string') { 
          goodsList.textContent = data
-      } else {
+      } else { // генерация контента если пришел положительный ответ
         data.forEach(item => {
             goodsList.insertAdjacentHTML('afterbegin', `
             <li class="goods-list__item">
@@ -37,19 +38,19 @@ const generateGoodsPage = () => {
       }
       
    }
-
+   // формируем тип запроса
    if(location.pathname.includes('goods') && location.search) {
       const search = decodeURI(location.search);
       const prop = search.split('=')[0].substring(1);
       const value = search.split('=')[1];
       
-      if (prop === 's') {
+      if (prop === 's') {                                // запрос поиска
          getData.search(value, generateCards)
          mainHeader.textContent = `Поиск: ${value}`;
-      }else if (prop === 'wishlist') {
+      }else if (prop === 'wishlist') {                   // запрос списка желаний
          getData.wishList(wishList, generateCards);
          mainHeader.textContent = `Список желаний`;
-      } else if( prop === 'cat' || prop === 'subcat') {
+      } else if( prop === 'cat' || prop === 'subcat') {  // запрос категорий
          getData.category(prop, value, generateCards);
          mainHeader.textContent = value; 
       }

@@ -1,16 +1,17 @@
 import { getData } from "./getData.js";
 import { catalog } from './catalog.js';
-
+// генерация каталога
 const generateCatalog = () => {
 
-   getData.catalog(data => {
-      let catalogList ='';
-
+   getData.catalog(data => { 
+      let catalogList =''; 
+      // перебор полученных данных с созданием пунктов каталога
       data.forEach(item => {
          catalogList +=`
          <li class="catalog-list__item"><a href="goods.html?cat=${item}">${item}</a></li>
          `
       })
+      // HTML каталога
       const catalogHTML = `
          <div class="catalog">
             <button type="button" class="btn btn-close catalog-btn" id="hnf-menu-close-btn" aria-expanded="true"

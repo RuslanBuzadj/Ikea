@@ -1,24 +1,25 @@
-const PARAM = {
+// объект с параметрами 
+const PARAM = { 
    cat: 'category',
    subcat: 'subcategory',
    search: ['name', 'description', 'category', 'subcategory'],
    failSearch: 'По вашему запросу ничего не найдено',
    failWishlist: 'Список желаний пуст'
 };
-
+// объект с набором функций для запроса на сервер
 export const getData = {
    url: 'database/dataBase.json',
-   get(process) {
-      fetch(this.url)
+   get(process) { 
+      fetch(this.url)                     // запрос на сервер
       .then((response) => response.json())
       .then(process);     
    },
-   wishList(list, callback) {
+   wishList(list, callback) { // запрос на формирование списка желаний
       this.get((data) => {
          const result = data.filter((item) => list.includes(item.id));
-         if (result.length) {
+         if (result.length) { // если ответ положилельный
             callback(result);
-         }else {
+         }else {              // если ответ отрицательный
             callback(PARAM.failWishlist)
          }
          
@@ -30,14 +31,14 @@ export const getData = {
          callback(result);
       })
    },
-   card(list, callback) {
+   card(list, callback) { // запрос на формирование карточки товара
       this.get((data) => {
          const result = data.filter( item => list.some(obj => obj.id === item.id));
          
          callback(result);
       })
    } ,
-   category(prop, value, callback) {
+   category(prop, value, callback) { // запрос на формирование категорий
       this.get((data) => {   
               
          const result = data.filter( item => item[PARAM[prop]].toLowerCase() === value.toLowerCase()); 
@@ -45,7 +46,7 @@ export const getData = {
          callback(result);
       })
    } ,
-   search(value, callback) {
+   search(value, callback) { // запрос поиска
       this.get((data) => {
          const result = data.filter( item => {
             for(let prop in item) {
@@ -61,7 +62,7 @@ export const getData = {
          }
       })
    },
-   catalog(callback) {
+   catalog(callback) {  // запрос на формирование каталога
    this.get((data) => {
       const result = data.reduce((arr, item) => {
          if(!arr.includes(item.category)) {
@@ -72,7 +73,7 @@ export const getData = {
       callback(result);
    })
   },
-  subCatalog(value ,callback) {
+  subCatalog(value ,callback) { // запрос на формирование под каталога
    this.get((data) => {
       const result = data.filter(item => item.category === value).reduce((arr, item) => {
          if(!arr.includes(item.subcategory)) {

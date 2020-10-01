@@ -1,4 +1,4 @@
-const generateHeader = () => {
+const generateHeader = () => {  // генерация Header
    const headerHTML = `
    <header>
       <div class="container">

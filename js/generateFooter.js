@@ -1,17 +1,17 @@
 import { getData } from './getData.js';
-
+// генерация футера
 const generateFooter = () => {
 
    getData.catalog(data => {
       
       let catalogList = '';
-
+      // перебор полученных данных с созданием пунктов каталога
       data.forEach(item => {
          catalogList += `
          <li class="footer-list"><a href="goods.html?cat=${item}">${item}</a></li>
          `
       });
-
+      // HTML футера 
       const footerHTML = `
       <footer>
          <div class="container">
