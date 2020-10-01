@@ -354,9 +354,9 @@ footer {
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	-webkit-transition: left, right 0.2s 0s;
-	-o-transition: left, right 0.2s 0s;
-	transition: left, right 0.2s 0s;
+	-webkit-transition: all 0.2s 0s;
+	-o-transition: all 0.2s 0s;
+	transition: all 0.2s 0s;
 	width: 25rem;
 	padding: 6rem 4rem 3rem;
 	border-left: 2px solid #ccc;
@@ -608,6 +608,7 @@ footer {
 .goods-list {
 	display: -ms-grid;
 	display: grid;
+	grid-gap: 1.25rem;
 	grid-template-columns: repeat(4, 1fr);
 }
 
